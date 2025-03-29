@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider2D))]
 public class WaterRiseSimple : MonoBehaviour
@@ -9,7 +8,6 @@ public class WaterRiseSimple : MonoBehaviour
 
     [Header("Target Settings")]
     public string targetTag = "Cat";
-    public float restartDelay = 2f;
 
     private bool hasTriggered = false;
 
@@ -25,7 +23,7 @@ public class WaterRiseSimple : MonoBehaviour
 
     private void Update()
     {
-        // Жижа поднимается всегда
+        // Поднимаем воду вверх всегда
         transform.position += Vector3.up * riseSpeed * Time.deltaTime;
     }
 
@@ -34,13 +32,17 @@ public class WaterRiseSimple : MonoBehaviour
         if (!hasTriggered && other.CompareTag(targetTag))
         {
             hasTriggered = true;
-            Debug.Log("Кот утонул. Перезапуск через " + restartDelay + " секунд...");
-            Invoke(nameof(RestartLevel), restartDelay);
-        }
-    }
 
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // Вызываем экран поражения
+            GameOverManager gameOver = FindObjectOfType<GameOverManager>();
+            if (gameOver != null)
+            {
+                gameOver.TriggerGameOver();
+            }
+            else
+            {
+                Debug.LogError("GameOverScreen не найден в сцене!");
+            }
+        }
     }
 }

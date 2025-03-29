@@ -1,22 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Games\\Unity\\My project\\",
+  "WorkspaceRootPath": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\games\\unity\\my project\\assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\fadeinonstart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\fadeinonstart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Games\\Unity\\My project\\assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Games\\Unity\\My project\\assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\waterrise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\waterrise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Games\\Unity\\My project\\assets\\scripts\\movingplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\movingplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\movingplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\gameoverscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\gameoverscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,15 +38,52 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FadeInOnStart.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\FadeInOnStart.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FadeInOnStart.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\FadeInOnStart.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FadeInOnStart.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T17:22:20.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GameOverScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\GameOverScreen.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameOverScreen.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\GameOverScreen.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameOverScreen.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T16:46:50.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WaterRise.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\WaterRise.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\WaterRise.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\WaterRise.cs",
+              "RelativeToolTip": "Assets\\Scripts\\WaterRise.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCcAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T14:57:10.013Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "CameraFollow.cs",
-              "DocumentMoniker": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\CameraFollow.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
-              "ToolTip": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\CameraFollow.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CameraFollow.cs",
               "RelativeToolTip": "Assets\\Scripts\\CameraFollow.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -42,11 +91,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MovingPlatform.cs",
-              "DocumentMoniker": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\MovingPlatform.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\MovingPlatform.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MovingPlatform.cs",
-              "ToolTip": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\MovingPlatform.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\MovingPlatform.cs",
               "RelativeToolTip": "Assets\\Scripts\\MovingPlatform.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -54,11 +103,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PlatformSpawner.cs",
-              "DocumentMoniker": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlatformSpawner.cs",
-              "ToolTip": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlatformSpawner.cs",
               "ViewState": "AQIAAE8AAAAAAAAAAAAgwHcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -66,16 +115,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "CatController.cs",
-              "DocumentMoniker": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\CatController.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CatController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CatController.cs",
-              "ToolTip": "C:\\Games\\Unity\\My project\\Assets\\Scripts\\CatController.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CatController.cs",
               "RelativeToolTip": "Assets\\Scripts\\CatController.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAgwD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T08:24:23.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T08:24:23.925Z"
             }
           ]
         }
