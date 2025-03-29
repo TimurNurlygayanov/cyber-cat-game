@@ -27,6 +27,8 @@ public class PlatformSpawner : MonoBehaviour
     private float maxX;
     private float nextSpawnY = 0f;
     private List<GameObject> activePlatforms = new List<GameObject>();
+    
+    private int previous_static_platform = 1;
 
     void Awake()
     {
@@ -71,37 +73,75 @@ public class PlatformSpawner : MonoBehaviour
         float playerX = playerTransform.position.x;
         float playerY = playerTransform.position.y;
 
-        Vector3 underPlayerPos = new Vector3(playerX, playerY - 1f, platformZ);
-        GameObject basePlatform = Instantiate(staticPlatformPrefab, underPlayerPos, Quaternion.identity);
-        activePlatforms.Add(basePlatform);
-
-        nextSpawnY = underPlayerPos.y;
-
-        int additionalCount = 4;
-        float startY = nextSpawnY + 0.9f;
-
-        for (int i = 0; i < additionalCount; i++)
+        nextSpawnY = playerY - 2f;
+        
+        for (int xx = 0; xx < 5; xx++)
         {
-            float x = Random.Range(minX, maxX);
-            Vector3 pos = new Vector3(x, startY, platformZ);
-            GameObject platform = Instantiate(staticPlatformPrefab, pos, Quaternion.identity);
-            activePlatforms.Add(platform);
-            startY += 0.9f;
-            nextSpawnY = startY;
+            this.SpawnPlatform();
         }
     }
 
     void SpawnPlatform()
     {
-        float x = Random.Range(minX, maxX);
-        float y = nextSpawnY + Random.Range(minY, maxY);
-        Vector3 spawnPos = new Vector3(x, y, platformZ);
+        Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
+        Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
+        float platformHalfWidth = staticPlatformPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
 
-        GameObject prefab = Random.value < movingPlatformChance ? movingPlatformPrefab : staticPlatformPrefab;
-        GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+        
+        // Select platform type:
+        bool platform_type = Random.value < movingPlatformChance;
 
-        activePlatforms.Add(platform);
-        nextSpawnY = y;
+        if (activePlatforms.Count == 0) platform_type = false;
+
+        float x = 0;
+        
+        if (platform_type)
+        {
+            x = left.x + Random.Range(0.1f, 1.0f);
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = movingPlatformPrefab;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+
+            previous_static_platform = 0;
+        }
+        else
+        {
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else if (previous_static_platform == 2)
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
+            else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
+
+            if (activePlatforms.Count == 0)
+            {
+                Vector3 pos = playerTransform.position;
+                pos.x = x;
+                playerTransform.position = pos;
+            }
+
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatformPrefab;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
     }
 
     void ResetPlatforms()
