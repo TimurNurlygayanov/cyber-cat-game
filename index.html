@@ -57,7 +57,7 @@
       <circle cx="85" cy="90" r="8" fill="red" />
       <circle cx="115" cy="90" r="8" fill="red" />
     </svg>
-    <button id="startBtn">START</button>
+    <button id="startBtn">≽^•⩊•^≼</button>
   </div>
 
   <script>
@@ -91,5 +91,18 @@
       window.location.href = "game.html"; // replace with your actual game file
     }
   </script>
+
+<audio id="introAudio" src="sounds/robot_intro_ru.mp3"></audio>
+
 </body>
+
+
+
+<script>
+    const introAudio = document.getElementById("introAudio");
+    window.addEventListener("mousemove", () => {
+  introAudio.play();
+}, { once: true });
+  </script>
+
 </html>
