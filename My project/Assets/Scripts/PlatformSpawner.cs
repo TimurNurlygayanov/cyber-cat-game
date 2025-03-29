@@ -97,7 +97,7 @@ public class PlatformSpawner : MonoBehaviour
         
         if (platform_type)
         {
-            x = left.x + Random.Range(0.1f, 1.0f);
+            x = (left.x + right.x) / 2.0f;
             float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
