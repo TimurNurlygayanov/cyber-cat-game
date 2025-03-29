@@ -3,12 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class WaterRiseSimple : MonoBehaviour
 {
-    [Header("Movement Settings")]
     public float riseSpeed = 2f;
-
-    [Header("Target Settings")]
     public string targetTag = "Cat";
-
     private bool hasTriggered = false;
 
     private void Start()
@@ -16,14 +12,13 @@ public class WaterRiseSimple : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (!col.isTrigger)
         {
-            Debug.LogWarning("WaterRiseSimple: Collider2D должен быть 'Is Trigger'. Исправляю автоматически.");
             col.isTrigger = true;
+            Debug.Log("WaterRise: IsTrigger включён автоматически.");
         }
     }
 
     private void Update()
     {
-        // Поднимаем воду вверх всегда
         transform.position += Vector3.up * riseSpeed * Time.deltaTime;
     }
 
@@ -33,15 +28,14 @@ public class WaterRiseSimple : MonoBehaviour
         {
             hasTriggered = true;
 
-            // Вызываем экран поражения
-            GameOverManager gameOver = FindObjectOfType<GameOverManager>();
-            if (gameOver != null)
+            var manager = Object.FindFirstObjectByType<GameOverManager>();
+            if (manager != null)
             {
-                gameOver.TriggerGameOver();
+                manager.TriggerGameOver();
             }
             else
             {
-                Debug.LogError("GameOverScreen не найден в сцене!");
+                Debug.LogError("GameOverManager не найден в сцене!");
             }
         }
     }
