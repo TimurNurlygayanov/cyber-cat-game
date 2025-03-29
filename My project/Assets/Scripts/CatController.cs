@@ -13,6 +13,7 @@ public class CatController : MonoBehaviour
     private AudioSource audioSource;
 
     public AudioClip jumpSound;
+	public Animator animator;
 
     private bool isFrozen = false;
 
@@ -46,6 +47,17 @@ public class CatController : MonoBehaviour
         // Автопрыжок при касании платформ
         // Реализован в OnCollisionEnter2D
 
+		// Анимация 0_о
+		animator.SetFloat("HorizontalMove", Mathf.Abs(rb.linearVelocity.x));
+		if (rb.linearVelocity.y > 1f)
+		{
+			animator.SetBool("Jumping", true);
+		}
+		else
+		{
+			animator.SetBool("Jumping", false);
+		}
+		
         // Перезапуск при падении
         if (transform.position.y < fallThreshold)
         {
