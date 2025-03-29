@@ -6,6 +6,14 @@ public class PlatformSpawner : MonoBehaviour
     [Header("Platform Prefabs")]
     public GameObject staticPlatformPrefab;
     public GameObject movingPlatformPrefab;
+    
+    public GameObject staticPlatformWithEnemy1;
+    public GameObject staticPlatformWithEnemy2;
+    public GameObject staticPlatformWithEnemy3;
+    
+    public GameObject staticPlatform_dangerous1;
+    public GameObject staticPlatform_dangerous2;
+    public GameObject staticPlatform_dangerous3;
 
     [Header("Player Reference")]
     public Transform playerTransform;
@@ -33,7 +41,7 @@ public class PlatformSpawner : MonoBehaviour
     void Awake()
     {
         float camHalfWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        float platformHalfWidth = staticPlatformPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
+        float platformHalfWidth = staticPlatform_dangerous3.GetComponent<SpriteRenderer>().bounds.extents.x;
 
         minX = -camHalfWidth + platformHalfWidth;
         maxX = camHalfWidth - platformHalfWidth;
@@ -80,6 +88,26 @@ public class PlatformSpawner : MonoBehaviour
             this.SpawnPlatform();
         }
     }
+    
+    string GetWeightedRandom(List<(string text, float weight)> options)
+    {
+        float totalWeight = 0f;
+        foreach (var option in options)
+            totalWeight += option.weight;
+
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+        float cumulative = 0f;
+
+        foreach (var option in options)
+        {
+            cumulative += option.weight;
+            if (randomValue < cumulative)
+                return option.text;
+        }
+
+        // На случай если ничего не выбралось (теоретически невозможно)
+        return options[options.Count - 1].text;
+    }
 
     void SpawnPlatform()
     {
@@ -89,13 +117,25 @@ public class PlatformSpawner : MonoBehaviour
 
         
         // Select platform type:
-        bool platform_type = Random.value < movingPlatformChance;
+        List<(string text, float weight)> options = new List<(string, float)>()
+        {
+            ("static_safe", 0.5f),
+            ("moving", 0.2f),
+            ("platform_with_enemy1", 0.05f),  // always left
+            ("platform_with_enemy2", 0.05f),  // always right
+            ("platform_with_enemy3", 0.05f),  // random position
+            ("platform_dangerous1", 0.05f),   // random position
+            ("platform_dangerous2", 0.05f),  // random position
+            ("platform_dangerous3", 0.05f),  // this one is deadly
+        };
 
-        if (activePlatforms.Count == 0) platform_type = false;
+        string platform_type = GetWeightedRandom(options);
+
+        if (activePlatforms.Count == 0) platform_type = "static_safe";
 
         float x = 0;
         
-        if (platform_type)
+        if (platform_type == "moving")
         {
             x = (left.x + right.x) / 2.0f;
             float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
@@ -109,7 +149,7 @@ public class PlatformSpawner : MonoBehaviour
 
             previous_static_platform = 0;
         }
-        else
+        else if (platform_type == "static_safe")
         {
             if (previous_static_platform == 1)
             {
@@ -135,8 +175,113 @@ public class PlatformSpawner : MonoBehaviour
 
             float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
-            
+
             GameObject prefab = staticPlatformPrefab;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+            
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_with_enemy1")
+        {
+            x = left.x + platformHalfWidth;
+            previous_static_platform = 1;
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatformWithEnemy1;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_with_enemy2")
+        {
+            x = left.x + platformHalfWidth;
+            previous_static_platform = 1;
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatformWithEnemy2;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_with_enemy3")
+        {
+            x = left.x + platformHalfWidth;
+            previous_static_platform = 1;
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatformWithEnemy3;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_dangerous1")
+        {
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatform_dangerous1;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_dangerous2")
+        {
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatform_dangerous2;
+            GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            activePlatforms.Add(platform);
+            nextSpawnY = y;
+        }
+        else if (platform_type == "platform_dangerous3")
+        {
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
+            
+            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            Vector3 spawnPos = new Vector3(x, y, platformZ);
+            
+            GameObject prefab = staticPlatform_dangerous3;
             GameObject platform = Instantiate(prefab, spawnPos, Quaternion.identity);
 
             activePlatforms.Add(platform);

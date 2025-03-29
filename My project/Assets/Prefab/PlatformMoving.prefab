@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8014989956339621203}
   - component: {fileID: -3830748636506873325}
   - component: {fileID: 4227101907879391375}
-  - component: {fileID: 6980495277858017788}
   m_Layer: 0
   m_Name: PlatformMoving
   m_TagString: Platform
@@ -30,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3792877567911851252}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.002, y: -0.0025, z: 10}
+  m_LocalScale: {x: 0.4647078, y: 0.4781738, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -171,18 +170,3 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &6980495277858017788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3792877567911851252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88e0329f4d3544c5b0e9356bb2433b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowColor: {r: 0, g: 1, b: 0, a: 0.9372549}
-  glowWidth: 1
-  glowYOffset: 0.02
