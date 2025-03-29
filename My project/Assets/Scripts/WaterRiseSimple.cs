@@ -28,7 +28,15 @@ public class WaterRiseSimple : MonoBehaviour
         {
             hasTriggered = true;
 
-            var manager = Object.FindFirstObjectByType<GameOverManager>();
+            // Замораживаем кота сразу
+            CatController cat = other.GetComponent<CatController>();
+            if (cat != null)
+            {
+                cat.FreezeCat();
+            }
+
+            // Запускаем GameOver
+            GameOverManager manager = Object.FindFirstObjectByType<GameOverManager>();
             if (manager != null)
             {
                 manager.TriggerGameOver();
