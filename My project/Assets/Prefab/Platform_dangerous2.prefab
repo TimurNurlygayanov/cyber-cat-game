@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikeObject: {fileID: 6753521039349832623}
+  delta_h: 0.2
 --- !u!1 &3792877567911851252
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,9 +260,10 @@ GameObject:
   - component: {fileID: 2387406978196205755}
   - component: {fileID: 9059250674465649086}
   - component: {fileID: 5684416222635497499}
+  - component: {fileID: 5223987440043729458}
   m_Layer: 0
   m_Name: rrrrr
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,6 +342,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4405ab18904dc5aae1daae4220c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5223987440043729458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753521039349832623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c1c191341d74036abbb437e3d7e9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.2
+  moveSpeed: 3
+  pauseTime: 1
 --- !u!1 &7066166280904195970
 GameObject:
   m_ObjectHideFlags: 0

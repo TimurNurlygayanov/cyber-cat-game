@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - Cat
+  - Enemy
+  - Damage
   layers:
   - Default
   - TransparentFX

@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7927617080767583131}
   m_Layer: 0
   m_Name: Platform_dangerous3
-  m_TagString: Platform
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikeObject: {fileID: 6955016226989308078}
+  delta_h: 0.2
 --- !u!1 &6955016226989308078
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +347,7 @@ GameObject:
   - component: {fileID: 272641065384555599}
   - component: {fileID: 1330740755447009027}
   - component: {fileID: 469358820223482110}
+  - component: {fileID: 8791347350231290823}
   m_Layer: 0
   m_Name: rrrrr
   m_TagString: Untagged
@@ -430,6 +432,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4405ab18904dc5aae1daae4220c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8791347350231290823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955016226989308078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c1c191341d74036abbb437e3d7e9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.2
+  moveSpeed: 2
+  pauseTime: 1
 --- !u!1 &7066166280904195970
 GameObject:
   m_ObjectHideFlags: 0
