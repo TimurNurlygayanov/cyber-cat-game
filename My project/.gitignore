@@ -1,0 +1,22 @@
+[LFS]
+[LFS] *.psd
+[LFS] *.png
+[LFS] *.jpg
+[LFS] *.fbx
+[LFS] *.mp3
+[LFS] *.wav
+
+[LFS] # Unity
+[LFS] /Library/
+[LFS] /Temp/
+[LFS] /Logs/
+[LFS] /Obj/
+[LFS] /Build/
+[LFS] /UserSettings/
+
+[LFS] # VS Code
+.vscode/
+
+[LFS] # OS Files
+.DS_Store
+Thumbs.db
