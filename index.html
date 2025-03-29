@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Cat Start</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+      color: lime;
+      font-family: monospace;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    #startBtn {
+      background: lime;
+      color: black;
+      border: none;
+      font-size: 2rem;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div id="overlay" style="gap: 1em;">
+    <svg width="400" height="400" viewBox="0 0 200 200" style="filter: drop-shadow(0 0 10px white); margin-bottom: -2em;">
+      <!-- Head -->
+      <circle cx="100" cy="100" r="50" fill="black" />
+
+      <!-- Ears -->
+      <path d="M70 70 L85 30 L100 70" fill="black" />
+      <path d="M100 70 L115 30 L130 70" fill="black" />
+
+      <!-- Eyes -->
+      <circle cx="85" cy="90" r="8" fill="red" />
+      <circle cx="115" cy="90" r="8" fill="red" />
+    </svg>
+    <button id="startBtn">START</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function drawMatrix() {
+      const chars = '01';
+      ctx.fillStyle = 'rgba(0,0,0,0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'lime';
+      ctx.font = '16px monospace';
+      for (let i = 0; i < 200; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.fillText(char, x, y);
+      }
+    }
+
+    function loop() {
+      drawMatrix();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+
+    document.getElementById("startBtn").onclick = () => {
+      window.location.href = "game.html"; // replace with your actual game file
+    }
+  </script>
+</body>
+</html>

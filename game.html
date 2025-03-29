@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Cat Jump</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: white;
+    }
+    canvas {
+      display: block;
+      background: #fff;
+    }
+  </style>
+<audio id="jumpSound" src="https://cdn.jsdelivr.net/gh/joshuaavalon/audio-library@main/jump.mp3"></audio>
+<audio id="laserSound" src="https://cdn.jsdelivr.net/gh/joshuaavalon/audio-library@main/laser.mp3"></audio>
+<audio id="explodeSound" src="https://cdn.jsdelivr.net/gh/joshuaavalon/audio-library@main/explosion.mp3"></audio>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+const laserSound = document.getElementById("laserSound");
+const explodeSound = document.getElementById("explodeSound");
+const jumpSound = document.getElementById("jumpSound");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const groundY = canvas.height - 100;
+
+    const blockWidth = 200;
+const blockHeight = 20;
+const gap = 150; // уменьшен для облегчения прыжка
+const blockY = canvas.height / 2 + 80;
+
+const cat = {
+  x: canvas.width / 2 - 150,
+  y: blockY - 60,
+  width: 50,
+  height: 40,
+  vy: 0,
+  vx: 0,
+  speed: 5,
+  onGround: true,
+  direction: 1,
+  rotation: 0
+};
+
+    const gravity = 1;
+    const jumpStrength = -20; // усилен для более дальнего прыжка
+
+    const blocks = [
+  { x: canvas.width / 2 - blockWidth - gap / 2, y: blockY, width: blockWidth, height: blockHeight },
+  { x: canvas.width / 2 + gap / 2, y: blockY, width: blockWidth, height: blockHeight }
+];
+
+    function drawCat() {
+  const earWiggle = Math.sin(Date.now() / 200) * 2;
+  const isJumping = !cat.onGround;
+  const legOffset = isJumping ? -2 : Math.sin(Date.now() / 100) * 2;
+
+  ctx.save();
+  ctx.translate(cat.x, cat.y);
+  ctx.scale(cat.direction, 1);
+  if (isJumping) ctx.rotate(cat.direction * 0.2);
+
+  // Body
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 30, 20, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Ears
+  ctx.beginPath();
+  ctx.moveTo(15, -20);
+  ctx.lineTo(20, -35 + earWiggle);
+  ctx.lineTo(25, -20);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(25, -20);
+  ctx.lineTo(30, -35 + earWiggle);
+  ctx.lineTo(35, -20);
+  ctx.closePath();
+  ctx.fill();
+
+  // Head
+  ctx.beginPath();
+  ctx.arc(25, -10, 15, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eyes
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(20, -15, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(30, -15, 4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Legs
+  ctx.fillStyle = "black";
+  if (isJumping) {
+    ctx.fillRect(-20, 0, 6, 10);
+    ctx.fillRect(10, 0, 6, 10);
+  } else {
+    ctx.fillRect(-15, 18 + legOffset, 6, 12);
+    ctx.fillRect(5, 18 - legOffset, 6, 12);
+  }
+
+  // Tail
+  ctx.beginPath();
+  ctx.moveTo(-20, 0);
+  ctx.quadraticCurveTo(-35, -10, -20, -20);
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  ctx.restore();
+
+      // (Removed duplicated head and limbs — now fully handled in transformed context)
+    }
+
+    function drawBlocks() {
+      ctx.fillStyle = "#333";
+      blocks.forEach(b => {
+        ctx.fillRect(b.x, b.y, b.width, b.height);
+      });
+    }
+
+    function updateCat() {
+  cat.vy += gravity;
+  cat.y += cat.vy;
+  cat.x += cat.vx;
+  if (!cat.onGround) cat.rotation *= 0.95;
+
+  // Check collision with platforms
+  cat.onGround = false;
+  for (const block of blocks) {
+    if (
+      cat.y + 20 >= block.y &&
+      cat.y + 20 <= block.y + block.height &&
+      cat.x > block.x &&
+      cat.x < block.x + block.width
+    ) {
+      cat.y = block.y - 20;
+      cat.vy = 0;
+      cat.onGround = true;
+    }
+  }
+
+  // Game over if falls off screen
+  if (cat.y > canvas.height) {
+    gameOver = true;
+  }
+
+  if (cat.x < 0) cat.x = 0;
+  if (cat.x > canvas.width) cat.x = canvas.width;
+}
+
+
+    document.addEventListener("keydown", e => {
+      if (e.code === "ArrowRight") {
+        cat.vx = cat.speed;
+        cat.direction = 1;
+      }
+      if (e.code === "ArrowLeft") {
+        cat.vx = -cat.speed;
+        cat.direction = -1;
+      }
+      if (e.code === "Space" && cat.onGround) {
+    jumpSound.currentTime = 0;
+    jumpSound.play();
+    cat.vy = jumpStrength;
+    cat.rotation = cat.direction * 0.2;
+    cat.onGround = false;
+    cat.jumpStart = Date.now();
+  }
+    });
+
+    document.addEventListener("keyup", e => {
+      if (e.code === "ArrowRight" || e.code === "ArrowLeft") {
+        cat.vx = 0;
+      }
+    });
+
+    let robot = {
+  x: canvas.width / 2 + gap / 2 + blockWidth / 2 - 40,
+  y: blockY - 60,
+  width: 40,
+  height: 60,
+  vx: 0.15,
+  direction: 1,
+  alive: true,
+  exploding: false,
+  explosionFrame: 0
+};
+
+let lasers = [];
+
+function drawRobot() {
+  if (!robot.alive && !robot.exploding) return;
+  ctx.save();
+  ctx.translate(robot.x + robot.width / 2, robot.y + robot.height / 2);
+
+  if (robot.exploding) {
+    ctx.fillStyle = `rgba(255, 0, 0, ${1 - robot.explosionFrame / 20})`;
+    ctx.beginPath();
+    ctx.arc(0, 0, 30 + robot.explosionFrame * 2, 0, Math.PI * 2);
+    ctx.fill();
+    robot.explosionFrame++;
+    if (robot.explosionFrame > 20) robot.exploding = false;
+    ctx.restore();
+    return;
+  }
+
+  // Torso
+  ctx.fillStyle = "black";
+  ctx.fillRect(-15, -30, 30, 50);
+
+  // Head
+  ctx.beginPath();
+  ctx.arc(0, -45, 15, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eyes
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(-5, -50, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(5, -50, 4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Arms
+  ctx.fillStyle = "black";
+  ctx.fillRect(-25, -20, 10, 30);
+  ctx.fillRect(15, -20, 10, 30);
+
+  // Legs
+  ctx.fillRect(-10, 20, 8, 20);
+  ctx.fillRect(2, 20, 8, 20);
+
+
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(-10, -10, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(10, -10, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+}
+
+function drawLasers() {
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 2;
+  lasers.forEach(laser => {
+    ctx.beginPath();
+    ctx.moveTo(laser.x, laser.y);
+    ctx.lineTo(laser.x + laser.vx, laser.y);
+    ctx.stroke();
+  });
+}
+
+function updateRobot() {
+  if (!robot.alive || robot.exploding) return;
+  robot.x += robot.vx * robot.direction;
+  const rightEdge = canvas.width / 2 + gap / 2 + blockWidth - robot.width;
+  const leftEdge = canvas.width / 2 + gap / 2;
+  if (robot.x > rightEdge || robot.x < leftEdge) {
+    robot.direction *= -1;
+  }
+}
+
+function updateLasers() {
+  lasers.forEach(laser => laser.x += laser.vx);
+  lasers = lasers.filter(l => l.x < canvas.width);
+
+  lasers.forEach(l => {
+    if (
+      robot.alive &&
+      l.x > robot.x &&
+      l.x < robot.x + robot.width &&
+      l.y > robot.y &&
+      l.y < robot.y + robot.height
+    ) {
+      robot.alive = false;
+      robot.exploding = true;
+      explodeSound.currentTime = 0;
+      explodeSound.play();
+      robot.explosionFrame = 0;
+    }
+  });
+}
+
+document.addEventListener("keydown", e => {
+  if (e.code === "KeyF") {
+    const eyeY = cat.y - 15;
+    const eyeX = cat.direction === 1 ? cat.x + 30 : cat.x - 30;
+    laserSound.currentTime = 0;
+    laserSound.play();
+    lasers.push({ x: eyeX, y: eyeY, vx: 20 * cat.direction });
+  }
+});
+
+let gameOver = false;
+let matrixEffectTime = 0;
+
+function drawMatrixEffect() {
+  const chars = "01";
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "lime";
+  ctx.font = "20px monospace";
+  for (let i = 0; i < 200; i++) {
+    const char = chars[Math.floor(Math.random() * chars.length)];
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    ctx.fillText(char, x, y);
+  }
+}
+
+function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (gameOver) {
+    drawMatrixEffect();
+    matrixEffectTime++;
+    if (matrixEffectTime > 120) {
+      // Reset game
+      cat.x = canvas.width / 2 - 150;
+      cat.y = blockY - 60;
+      cat.vy = 0;
+      cat.vx = 0;
+      cat.rotation = 0;
+      cat.onGround = true;
+
+      robot.x = canvas.width / 2 + gap / 2 + blockWidth / 2 - 40;
+      robot.y = blockY - 60;
+      robot.alive = true;
+      robot.exploding = false;
+      robot.explosionFrame = 0;
+      robot.direction = 1;
+
+      lasers = [];
+      matrixEffectTime = 0;
+      gameOver = false;
+    }
+    requestAnimationFrame(loop);
+    return;
+  }
+      drawBlocks();
+      updateCat();
+      drawCat();
+      drawRobot();
+      drawLasers();
+      updateRobot();
+      updateLasers();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  </script>
+</body>
+</html>
