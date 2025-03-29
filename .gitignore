@@ -33,5 +33,3 @@ MemoryCaptures/
 .DS_Store
 Thumbs.db
 
-# WebGL builds (optional)
-Build/
