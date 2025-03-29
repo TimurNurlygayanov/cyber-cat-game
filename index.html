@@ -57,7 +57,7 @@
       <circle cx="85" cy="90" r="8" fill="red" />
       <circle cx="115" cy="90" r="8" fill="red" />
     </svg>
-    <button id="startBtn">≽^•⩊•^≼</button>
+    <button id="startBtn" style="display: none;">≽^•⩊•^≼</button>
   </div>
 
   <script>
@@ -99,10 +99,18 @@
 
 
 <script>
+    <script>
     const introAudio = document.getElementById("introAudio");
-    window.addEventListener("mousemove", () => {
+    const startBtn = document.getElementById("startBtn");
+
+    function activateStart() {
       introAudio.play();
-    }, { once: true });
+      startBtn.style.display = "block";
+    }
+
+    window.addEventListener("click", activateStart, { once: true });
+    window.addEventListener("keydown", activateStart, { once: true });
+</script>
   </script>
 
 </html>
