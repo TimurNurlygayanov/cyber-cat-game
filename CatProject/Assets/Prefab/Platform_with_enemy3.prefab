@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 2467946351414982190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.4, z: 0}
+  m_LocalPosition: {x: 0, y: -4.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.013582706, y: -0.25227347}
+  m_Offset: {x: 0.49241936, y: -0.25227347}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -107,7 +107,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6.5147343, y: 0.8558437}
+  m_Size: {x: 7.656575, y: 0.8558437}
   m_EdgeRadius: 0
 --- !u!1 &3792877567911851252
 GameObject:
@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 4686409002208809028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.1, z: 0}
+  m_LocalPosition: {x: -1.61, y: 3.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -330,7 +330,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00000071525574, y: 0.2861337}
+  m_Offset: {x: -0.5162984, y: 0.2861337}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -340,7 +340,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.5468545, y: 0.7456596}
+  m_Size: {x: 5.5794497, y: 0.7456596}
   m_EdgeRadius: 0
 --- !u!1 &5149341126261902786
 GameObject:
@@ -469,7 +469,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0026772022, y: -0.00000023841858}
+  m_Offset: {x: -0.58182716, y: -0.057881713}
   m_SpriteTilingProperty:
     border: {x: 0.71, y: 1.3299999, z: 0.55, w: 1.0799999}
     pivot: {x: 0.5, y: 0.5}
@@ -479,7 +479,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.370958, y: 7.841003}
+  m_Size: {x: 5.227001, y: 5.641515}
   m_EdgeRadius: 0
 --- !u!114 &6646216399602408951
 MonoBehaviour:

@@ -6,6 +6,8 @@ public class SpikesMover : MonoBehaviour
     public float moveSpeed = 1f;          // Скорость движения
     public float pauseTime = 1f;          // Задержка на верхней/нижней точке
 
+    private float real_pause_time = 0.1f;
+
     private Vector3 startPos;
     private Vector3 targetPos;
     private bool movingUp = true;
@@ -37,6 +39,12 @@ public class SpikesMover : MonoBehaviour
         if (Vector3.Distance(transform.localPosition, destination) < 0.01f)
         {
             timer = pauseTime;
+
+            if (movingUp)
+            {
+                timer = real_pause_time;
+            }
+            
             isPaused = true;
         }
     }

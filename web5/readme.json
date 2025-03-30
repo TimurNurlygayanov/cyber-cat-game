@@ -1,0 +1,15 @@
+{
+    "title_ru": "Название на русском",
+    "title_en": "Mission Possible",
+    "description_ru": "Во время восстания роботов последний герой — пушистый комочек с хвостом. Прыгай по обломкам, убегай от дронов, спасай себя (и остатки мира). Мяу-трёшн, когти и чистая ненависть к пылесосам!",
+    "description_en": "During the robot uprising, the last hero is... a fluffy-tailed furball. Leap across the ruins, dodge killer drones, and save yourself (and what’s left of the world). Meow-hem, claws, and pure hatred for vacuum cleaners!",
+    "preview": "preview.png",
+    "gallery": [
+        "/gallery/img1.jpg",
+        "/gallery/img2.jpg",
+        "/gallery/img3.jpg",
+        "/gallery/img4.jpg",
+        "/gallery/img5.jpg"
+    ],
+    "instruction": "Играть со звуком"
+}

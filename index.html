@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=500 height=750 tabindex="-1" style="width: 500px; height: 750px; background: #231F20"></canvas>
-    <script src="Build/web3.loader.js"></script>
+    <script src="Build/web5.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -26,9 +26,9 @@
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
-        dataUrl: "Build/web3.data",
-        frameworkUrl: "Build/web3.framework.js",
-        codeUrl: "Build/web3.wasm",
+        dataUrl: "Build/web5.data",
+        frameworkUrl: "Build/web5.framework.js",
+        codeUrl: "Build/web5.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "QA.games",
         productName: "CyberCat",

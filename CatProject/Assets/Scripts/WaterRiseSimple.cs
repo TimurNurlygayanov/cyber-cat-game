@@ -1,49 +1,47 @@
 using UnityEngine;
-
 [RequireComponent(typeof(Collider2D))]
 public class WaterRiseSimple : MonoBehaviour
 {
-    public float riseSpeed = 2f;
+    public float initialRiseSpeed = 0.1f; // СЃРєРѕСЂРѕСЃС‚СЊ РїРµСЂРІС‹Рµ 3 СЃРµРєСѓРЅРґС‹
+    public float afterRiseSpeed = 0.25f;   // СЃРєРѕСЂРѕСЃС‚СЊ РїРѕСЃР»Рµ 3 СЃРµРєСѓРЅРґ
+    public float switchTime = 5f;       // РІСЂРµРјСЏ СЃРјРµРЅС‹ СЃРєРѕСЂРѕСЃС‚Рё
     public string targetTag = "Cat";
+    private float timer = 0f;
     private bool hasTriggered = false;
-
     private void Start()
     {
         Collider2D col = GetComponent<Collider2D>();
         if (!col.isTrigger)
         {
             col.isTrigger = true;
-            Debug.Log("WaterRise: IsTrigger включён автоматически.");
+            Debug.Log("WaterRise: IsTrigger РІРєР»СЋС‡С‘РЅ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё.");
         }
     }
-
     private void Update()
     {
-        transform.position += Vector3.up * riseSpeed * Time.deltaTime;
+        timer += Time.deltaTime;
+        float currentSpeed = timer < switchTime ? initialRiseSpeed : afterRiseSpeed;
+        transform.position += Vector3.up * currentSpeed * Time.deltaTime;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!hasTriggered && other.CompareTag(targetTag))
         {
             hasTriggered = true;
-
-            // Замораживаем кота
+            // Р—Р°РјРѕСЂР°Р¶РёРІР°РµРј РєРѕС‚Р°
             CatController cat = other.GetComponent<CatController>();
             if (cat != null)
             {
                 cat.FreezeCat();
             }
-
-            // Скрываем UI-панели, если GameManager найден
+            // РЎРєСЂС‹РІР°РµРј UI-РїР°РЅРµР»Рё, РµСЃР»Рё GameManager РЅР°Р№РґРµРЅ
             GameManager gm = GameManager.Instance;
             if (gm != null)
             {
                 if (gm.livesPanel != null) gm.livesPanel.SetActive(false);
                 if (gm.scorePanel != null) gm.scorePanel.SetActive(false);
             }
-
-            // Запускаем GameOver
+            // Р—Р°РїСѓСЃРєР°РµРј GameOver
             GameOverManager manager = Object.FindFirstObjectByType<GameOverManager>();
             if (manager != null)
             {
@@ -51,7 +49,7 @@ public class WaterRiseSimple : MonoBehaviour
             }
             else
             {
-                Debug.LogError("GameOverManager не найден в сцене!");
+                Debug.LogError("GameOverManager РЅРµ РЅР°Р№РґРµРЅ РІ СЃС†РµРЅРµ!");
             }
         }
     }
