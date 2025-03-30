@@ -1363,6 +1363,7 @@ MonoBehaviour:
   staticPlatform_dangerous1: {fileID: 3792877567911851252, guid: 3d0868c0e4c9c4094b0ab2b1e18c3b25, type: 3}
   staticPlatform_dangerous2: {fileID: 3792877567911851252, guid: e81e3c7d1352c45b9be292244d65656c, type: 3}
   staticPlatform_dangerous3: {fileID: 3792877567911851252, guid: 2e2457308c2e24efab0f20f2479f2210, type: 3}
+  bonusLife_prefab: {fileID: 3792877567911851252, guid: 0942a42297a9a467cac767a5ab43015b, type: 3}
   playerTransform: {fileID: 1797950381}
   totalPlatformsSpawned: 0
   minY: 0.7
@@ -1424,10 +1425,10 @@ MonoBehaviour:
   jumpForce: 6
   moveSpeed: 5
   fallThreshold: -10
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: dc6cb957d8e4aef4fa308bc4ed63111f, type: 3}
   animator: {fileID: 1797950388}
   knockbackForce: 5
-  damageSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: d910b18af682d48cca8d3c57a390deaf, type: 3}
 --- !u!50 &1797950384
 Rigidbody2D:
   serializedVersion: 5
@@ -1443,7 +1444,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
