@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -180.13205, y: -86}
+  m_AnchoredPosition: {x: -231, y: -173.83}
   m_SizeDelta: {x: 305.8601, y: 87.8294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161375386
@@ -1004,10 +1004,10 @@ RectTransform:
   - {fileID: 1598236382}
   m_Father: {fileID: 1591289586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -649.8, y: -86}
-  m_SizeDelta: {x: 305.8601, y: 87.8294}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 231, y: -173.83}
+  m_SizeDelta: {x: 305.8601, y: 87.829346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138767048
 MonoBehaviour:
@@ -1715,7 +1715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 19.4, y: 2.3}
+  m_AnchoredPosition: {x: 19.400024, y: 2.3}
   m_SizeDelta: {x: 125.5731, y: 125.5731}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707309465
@@ -1812,6 +1812,7 @@ MonoBehaviour:
   animator: {fileID: 1797950388}
   knockbackForce: 5
   damageSound: {fileID: 8300000, guid: d910b18af682d48cca8d3c57a390deaf, type: 3}
+  invulnerabilityTime: 1
 --- !u!50 &1797950384
 Rigidbody2D:
   serializedVersion: 5
