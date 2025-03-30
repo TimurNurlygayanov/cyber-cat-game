@@ -61,6 +61,10 @@ public class GameManager : MonoBehaviour
             GameOverManager manager = FindFirstObjectByType<GameOverManager>();
             if (manager != null)
                 manager.TriggerGameOver();
+
+            CatController cat = Object.FindFirstObjectByType<CatController>();
+            if (cat != null)
+                cat.DieGracefully();
         }
     }
 

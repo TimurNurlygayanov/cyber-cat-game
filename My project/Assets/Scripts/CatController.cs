@@ -153,4 +153,25 @@ public class CatController : MonoBehaviour
 
         spriteRenderer.enabled = false;
     }
+
+    public void DieGracefully()
+    {
+        if (isFrozen) return;
+
+        isFrozen = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.simulated = false;
+
+        // Отключаем коллайдер (если CircleCollider2D используется)
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+            collider.enabled = false;
+
+        // Становится красным
+        spriteRenderer.color = Color.red;
+
+        // Плавно опускается вниз и исчезает
+        StartCoroutine(SinkAndFadeOut());
+    }
 }
