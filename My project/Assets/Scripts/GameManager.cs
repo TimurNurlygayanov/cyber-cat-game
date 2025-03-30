@@ -49,6 +49,17 @@ public class GameManager : MonoBehaviour
                 manager.TriggerGameOver();
         }
     }
+    
+    public void AddLife()
+    {
+        lives++;
+        UpdateUI();
+
+        if (lives >9)
+        {
+            lives = 9;
+        }
+    }
 
     void UpdateUI()
     {

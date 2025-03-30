@@ -14,6 +14,8 @@ public class PlatformSpawner : MonoBehaviour
     public GameObject staticPlatform_dangerous1;
     public GameObject staticPlatform_dangerous2;
     public GameObject staticPlatform_dangerous3;
+    
+    public GameObject bonusLife_prefab;
 
     [Header("Player Reference")]
     public Transform playerTransform;
@@ -155,7 +157,8 @@ public class PlatformSpawner : MonoBehaviour
 		} else if (this.totalPlatformsSpawned < 12) {
 			options = new List<(string, float)>()
             {
-				("static_safe", 1f),
+				("static_safe", 0.5f),
+                ("moving", 0.5f),
             };
 
 			default_platforms_distance = 1.1f;
@@ -198,10 +201,8 @@ public class PlatformSpawner : MonoBehaviour
 		} else if (this.totalPlatformsSpawned < 50) {
 			options = new List<(string, float)>()
             {
-                ("static_safe", 0.1f),
 				("platform_dangerous1", 0.1f),
-				("moving", 0.2f),
-				("platform_with_enemy1", 0.2f),
+				("moving", 0.5f),
                 ("platform_with_enemy2", 0.2f),
                 ("platform_with_enemy2", 0.2f),
             };
@@ -282,6 +283,13 @@ if (this.totalPlatformsSpawned < 200) {
             nextSpawnY = y;
 
             previous_static_platform = 0;
+
+            // 30% chance to give additional life with moving platform
+            if (Random.value < 0.3f)
+            {
+                Vector3 bonusPos = new Vector3(Random.Range(left.x + 0.5f, right.x - 0.5f), y + 0.5f, 1);
+                Instantiate(bonusLife_prefab, bonusPos, Quaternion.identity);
+            }
         }
         else if (platform_type == "static_safe")
         {

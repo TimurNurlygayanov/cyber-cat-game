@@ -8,6 +8,7 @@ TagManager:
   - Cat
   - Enemy
   - Damage
+  - BonusLife
   layers:
   - Default
   - TransparentFX
