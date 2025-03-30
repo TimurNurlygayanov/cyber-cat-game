@@ -18,10 +18,12 @@ public class CatController : MonoBehaviour
     public Animator animator;
 
     private bool isFrozen = false;
+    private bool isInvulnerable = false;
     private HashSet<Transform> scoredPlatforms = new HashSet<Transform>();
 
     public float knockbackForce = 5f;
     public AudioClip damageSound;
+    public float invulnerabilityTime = 1f;
 
     void Start()
     {
@@ -64,18 +66,9 @@ public class CatController : MonoBehaviour
     {
         if (isFrozen) return;
 
-        if (collision.collider.CompareTag("Damage"))
+        if (collision.collider.CompareTag("Damage") && !isInvulnerable)
         {
-            GameManager.Instance.LoseLife();
-
-            if (damageSound != null && audioSource != null)
-                audioSource.PlayOneShot(damageSound);
-
-            Vector2 knockbackDir = (transform.position - collision.transform.position).normalized;
-            rb.linearVelocity = new Vector2(knockbackDir.x * knockbackForce, knockbackForce);
-
-            StartCoroutine(DamageFlash());
-
+            StartCoroutine(HandleDamage(collision));
             return;
         }
 
@@ -99,6 +92,22 @@ public class CatController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private IEnumerator HandleDamage(Collision2D collision)
+    {
+        isInvulnerable = true;
+        GameManager.Instance.LoseLife();
+
+        if (damageSound != null && audioSource != null)
+            audioSource.PlayOneShot(damageSound);
+
+        Vector2 knockbackDir = (transform.position - collision.transform.position).normalized;
+        rb.linearVelocity = new Vector2(knockbackDir.x * knockbackForce, knockbackForce);
+
+        StartCoroutine(DamageFlash());
+        yield return new WaitForSeconds(invulnerabilityTime);
+        isInvulnerable = false;
     }
 
     private IEnumerator DamageFlash()
@@ -152,5 +161,22 @@ public class CatController : MonoBehaviour
         }
 
         spriteRenderer.enabled = false;
+    }
+
+    public void DieGracefully()
+    {
+        if (isFrozen) return;
+
+        isFrozen = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.simulated = false;
+
+        var collider = GetComponent<Collider2D>();
+        if (collider != null)
+            collider.enabled = false;
+
+        spriteRenderer.color = Color.red;
+        StartCoroutine(SinkAndFadeOut());
     }
 }

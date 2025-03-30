@@ -28,11 +28,19 @@ public class WaterRiseSimple : MonoBehaviour
         {
             hasTriggered = true;
 
-            // Замораживаем кота сразу
+            // Замораживаем кота
             CatController cat = other.GetComponent<CatController>();
             if (cat != null)
             {
                 cat.FreezeCat();
+            }
+
+            // Скрываем UI-панели, если GameManager найден
+            GameManager gm = GameManager.Instance;
+            if (gm != null)
+            {
+                if (gm.livesPanel != null) gm.livesPanel.SetActive(false);
+                if (gm.scorePanel != null) gm.scorePanel.SetActive(false);
             }
 
             // Запускаем GameOver
