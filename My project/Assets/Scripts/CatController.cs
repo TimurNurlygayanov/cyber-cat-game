@@ -19,6 +19,8 @@ public class CatController : MonoBehaviour
 
     private bool isFrozen = false;
     private bool isInvulnerable = false;
+    private bool isKnockbacked = false;
+
     private HashSet<Transform> scoredPlatforms = new HashSet<Transform>();
 
     public float knockbackForce = 5f;
@@ -34,7 +36,7 @@ public class CatController : MonoBehaviour
 
     void Update()
     {
-        if (isFrozen) return;
+        if (isFrozen || isKnockbacked) return;
 
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
@@ -78,7 +80,7 @@ public class CatController : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-                if (jumpSound != null && audioSource != null)
+                if (jumpSound && audioSource)
                     audioSource.PlayOneShot(jumpSound);
 
                 Transform platform = contact.collider.transform;
@@ -97,17 +99,22 @@ public class CatController : MonoBehaviour
     private IEnumerator HandleDamage(Collision2D collision)
     {
         isInvulnerable = true;
+        isKnockbacked = true;
+
         GameManager.Instance.LoseLife();
 
-        if (damageSound != null && audioSource != null)
+        if (damageSound && audioSource)
             audioSource.PlayOneShot(damageSound);
 
         Vector2 knockbackDir = (transform.position - collision.transform.position).normalized;
         rb.linearVelocity = new Vector2(knockbackDir.x * knockbackForce, knockbackForce);
 
         StartCoroutine(DamageFlash());
+
         yield return new WaitForSeconds(invulnerabilityTime);
+
         isInvulnerable = false;
+        isKnockbacked = false;
     }
 
     private IEnumerator DamageFlash()

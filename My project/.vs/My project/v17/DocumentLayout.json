@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\catcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\waterrisesimple.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\waterrisesimple.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\Alexey\\cyber-cat-game\\My project\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\alexey\\cyber-cat-game\\my project\\assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\platformspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WaterRiseSimple.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\WaterRiseSimple.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\WaterRiseSimple.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\WaterRiseSimple.cs",
+              "RelativeToolTip": "Assets\\Scripts\\WaterRiseSimple.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAgwDoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:16:56.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CatController.cs",
+              "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CatController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CatController.cs",
+              "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\CatController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CatController.cs",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAgwKwAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T07:55:38.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "PlatformSpawner.cs",
               "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlatformSpawner.cs",
               "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\PlatformSpawner.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlatformSpawner.cs",
-              "ViewState": "AQIAAA4BAAAAAAAAAAAQwCIBAABNAAAA",
+              "ViewState": "AQIAABoBAAAAAAAAAAAQwCIBAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-30T07:30:30.385Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
               "ToolTip": "C:\\Users\\Alexey\\cyber-cat-game\\My project\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAIwD4AAAAAAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAADwvy4AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-30T06:49:38.229Z",
               "EditorCaption": ""
