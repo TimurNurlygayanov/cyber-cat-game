@@ -205,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 283910128}
+  - component: {fileID: 283910130}
   - component: {fileID: 283910129}
   m_Layer: 0
   m_Name: BackgroundMusic
@@ -238,12 +239,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7ef437ee2d0ba9544893e56534e8a4a8, type: 3}
-  m_Resource: {fileID: 8300000, guid: 7ef437ee2d0ba9544893e56534e8a4a8, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.64
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -325,6 +326,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &283910130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283910127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cc4a38538371c48954f3bfd72c1a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainAudioSource: {fileID: 283910129}
+  backgroundMusic: {fileID: 8300000, guid: 7ef437ee2d0ba9544893e56534e8a4a8, type: 3}
+  periodicSound: {fileID: 8300000, guid: 17dd03c525e4d3049876bc89864145ca, type: 3}
+  interval: 60
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f259737d86742240bb7ca746e63cf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseSpeed: 0.05
+  riseSpeed: 1
   targetTag: Cat
 --- !u!212 &436235185
 SpriteRenderer:
