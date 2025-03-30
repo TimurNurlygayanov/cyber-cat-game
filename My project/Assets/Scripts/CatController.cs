@@ -15,7 +15,7 @@ public class CatController : MonoBehaviour
     private AudioSource audioSource;
 
     public AudioClip jumpSound;
-	public Animator animator;
+    public Animator animator;
 
     private bool isFrozen = false;
     private HashSet<Transform> scoredPlatforms = new HashSet<Transform>();
@@ -37,27 +37,23 @@ public class CatController : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        // Телепорт по краям экрана
         Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
         if (viewPos.x < 0f)
             transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x, transform.position.y, transform.position.z);
         else if (viewPos.x > 1f)
             transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f)).x, transform.position.y, transform.position.z);
 
-        // Разворот
         if (moveInput > 0.01f)
             spriteRenderer.flipX = false;
         else if (moveInput < -0.01f)
             spriteRenderer.flipX = true;
 
-        // Анимация
         if (animator != null)
         {
             animator.SetFloat("HorizontalMove", Mathf.Abs(rb.linearVelocity.x));
             animator.SetBool("Jumping", rb.linearVelocity.y > 1f);
         }
 
-        // Перезапуск при падении
         if (transform.position.y < fallThreshold)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -68,7 +64,6 @@ public class CatController : MonoBehaviour
     {
         if (isFrozen) return;
 
-        // Проверка на урон
         if (collision.collider.CompareTag("Damage"))
         {
             GameManager.Instance.LoseLife();
@@ -76,25 +71,23 @@ public class CatController : MonoBehaviour
             if (damageSound != null && audioSource != null)
                 audioSource.PlayOneShot(damageSound);
 
-            // Откидывание от объекта
             Vector2 knockbackDir = (transform.position - collision.transform.position).normalized;
             rb.linearVelocity = new Vector2(knockbackDir.x * knockbackForce, knockbackForce);
 
-            return; // Прерываем дальнейшую обработку
+            StartCoroutine(DamageFlash());
+
+            return;
         }
 
-        // Обработка платформ
         foreach (ContactPoint2D contact in collision.contacts)
         {
             if (contact.normal.y > 0.5f)
             {
-                // Прыжок
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
                 if (jumpSound != null && audioSource != null)
                     audioSource.PlayOneShot(jumpSound);
 
-                // Счёт за новую платформу
                 Transform platform = contact.collider.transform;
 
                 if (!scoredPlatforms.Contains(platform))
@@ -108,6 +101,19 @@ public class CatController : MonoBehaviour
         }
     }
 
+    private IEnumerator DamageFlash()
+    {
+        float flashDuration = 0.1f;
+        int flashes = 5;
+
+        for (int i = 0; i < flashes; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(flashDuration);
+        }
+    }
 
     public void FreezeCat()
     {
@@ -147,6 +153,4 @@ public class CatController : MonoBehaviour
 
         spriteRenderer.enabled = false;
     }
-
-
 }

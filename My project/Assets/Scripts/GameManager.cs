@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -8,12 +8,15 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
+    public GameObject livesPanel; // ← Панель жизней
+    public GameObject scorePanel; // ← Панель очков
 
     [Header("Gameplay")]
     public int startingLives = 3;
 
     private int lives;
     private int score;
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -27,46 +30,55 @@ public class GameManager : MonoBehaviour
     {
         lives = startingLives;
         score = 0;
+        isGameOver = false;
         UpdateUI();
     }
 
     public void AddScore(int amount)
     {
+        if (isGameOver) return;
+
         score += amount;
         UpdateUI();
     }
 
     public void LoseLife()
     {
+        if (isGameOver) return;
+
         lives--;
         UpdateUI();
 
         if (lives <= 0)
         {
+            isGameOver = true;
+
+            // Скрыть панели
+            if (livesPanel != null) livesPanel.SetActive(false);
+            if (scorePanel != null) scorePanel.SetActive(false);
+
             Debug.Log("Game Over!");
-            GameOverManager manager = Object.FindFirstObjectByType<GameOverManager>();
+            GameOverManager manager = FindFirstObjectByType<GameOverManager>();
             if (manager != null)
                 manager.TriggerGameOver();
         }
     }
-    
+
     public void AddLife()
     {
-        lives++;
-        UpdateUI();
+        if (isGameOver) return;
 
-        if (lives >9)
-        {
-            lives = 9;
-        }
+        lives++;
+        if (lives > 9) lives = 9;
+        UpdateUI();
     }
 
     void UpdateUI()
     {
         if (scoreText != null)
-            scoreText.text = "Score: " + score;
+            scoreText.text = score.ToString();
 
         if (livesText != null)
-            livesText.text = "Lives: " + lives;
+            livesText.text = lives.ToString();
     }
 }
