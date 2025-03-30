@@ -342,6 +342,12 @@ if (this.totalPlatformsSpawned < 200) {
                 previous_static_platform = 1;
             }
             
+            // 30% chance to put it in the middle of the screen:
+            if (Random.Range(0.0f, 1.0f) < 0.3f)
+            {
+                x = (left.x + right.x) / 2.0f;
+            }
+            
             float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
@@ -361,6 +367,12 @@ if (this.totalPlatformsSpawned < 200) {
             {
                 x = left.x + platformHalfWidth;
                 previous_static_platform = 1;
+            }
+            
+            // 30% chance to put it in the middle of the screen:
+            if (Random.Range(0.0f, 1.0f) < 0.3f)
+            {
+                x = (left.x + right.x) / 2.0f;
             }
             
             float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
@@ -424,6 +436,12 @@ if (this.totalPlatformsSpawned < 200) {
             {
                 x = left.x + platformHalfWidth;
                 previous_static_platform = 1;
+            }
+            
+            // 30% chance to put it in the middle of the screen:
+            if (Random.Range(0.0f, 1.0f) < 0.3f)
+            {
+                x = (left.x + right.x) / 2.0f;
             }
             
             float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
