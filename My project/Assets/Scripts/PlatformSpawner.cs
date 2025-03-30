@@ -18,6 +18,8 @@ public class PlatformSpawner : MonoBehaviour
     [Header("Player Reference")]
     public Transform playerTransform;
 
+	public int totalPlatformsSpawned = 0 ;
+
     [Header("Spawn Settings")]
     public float minY = 0.8f;
     public float maxY = 1.2f;
@@ -37,6 +39,7 @@ public class PlatformSpawner : MonoBehaviour
     private List<GameObject> activePlatforms = new List<GameObject>();
     
     private int previous_static_platform = 1;
+    private float default_platforms_distance = 1.0f;
 
     void Awake()
     {
@@ -83,7 +86,7 @@ public class PlatformSpawner : MonoBehaviour
 
         nextSpawnY = playerY - 2f;
         
-        for (int xx = 0; xx < 5; xx++)
+        for (int xx = 0; xx < 10; xx++)
         {
             this.SpawnPlatform();
         }
@@ -111,23 +114,154 @@ public class PlatformSpawner : MonoBehaviour
 
     void SpawnPlatform()
     {
+		this.totalPlatformsSpawned += 1;
+
         Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
         float platformHalfWidth = staticPlatformPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
 
+		List<(string text, float weight)> options = new List<(string, float)>()
+            {
+                ("static_safe", 0.8f),
+                ("moving", 0.2f),
+            };
         
-        // Select platform type:
-        List<(string text, float weight)> options = new List<(string, float)>()
-        {
-            ("static_safe", 0.5f),
-            ("moving", 0.2f),
-            ("platform_with_enemy1", 0.05f),  // always left
-            ("platform_with_enemy2", 0.05f),  // always right
-            ("platform_with_enemy3", 0.05f),  // random position
-            ("platform_dangerous1", 0.05f),   // random position
-            ("platform_dangerous2", 0.05f),  // random position
-            ("platform_dangerous3", 0.05f),  // this one is deadly
-        };
+        // Select platform type - and make sure the complexity
+        /// is growing over the progress
+		if (this.totalPlatformsSpawned < 5) {
+			options = new List<(string, float)>()
+            {
+                ("static_safe", 1f),
+            };
+
+			default_platforms_distance = 0.8f;
+			
+		} else if (this.totalPlatformsSpawned < 7) {
+			options = new List<(string, float)>()
+            {
+				("moving", 1f),
+            };
+
+			default_platforms_distance = 0.8f;
+			
+		} else if (this.totalPlatformsSpawned < 8) {
+			options = new List<(string, float)>()
+            {
+				("platform_with_enemy1", 1f),
+            };
+
+			default_platforms_distance = 1.1f;
+			
+		} else if (this.totalPlatformsSpawned < 12) {
+			options = new List<(string, float)>()
+            {
+				("static_safe", 1f),
+            };
+
+			default_platforms_distance = 1.1f;
+			
+		} else if (this.totalPlatformsSpawned < 13) {
+			options = new List<(string, float)>()
+            {
+				("platform_with_enemy2", 1f),
+            };
+
+			default_platforms_distance = 1f;
+			
+		} else if (this.totalPlatformsSpawned < 17) {
+			options = new List<(string, float)>()
+            {
+				("static_safe", 0.3f),
+				("moving", 0.7f),
+            };
+
+			default_platforms_distance = 1.1f;
+			
+		} else if (this.totalPlatformsSpawned < 18) {
+			options = new List<(string, float)>()
+            {
+				("platform_with_enemy3", 1f),
+            };
+
+			default_platforms_distance = 1.2f;
+			
+		} else if (this.totalPlatformsSpawned < 25) {
+			options = new List<(string, float)>()
+            {
+				("moving", 0.3f),
+                ("platform_with_enemy3", 0.2f),
+				("platform_dangerous2", 0.5f),
+            };
+
+			default_platforms_distance = 1.2f;
+			
+		} else if (this.totalPlatformsSpawned < 50) {
+			options = new List<(string, float)>()
+            {
+                ("static_safe", 0.1f),
+				("platform_dangerous1", 0.1f),
+				("moving", 0.2f),
+				("platform_with_enemy1", 0.2f),
+                ("platform_with_enemy2", 0.2f),
+                ("platform_with_enemy2", 0.2f),
+            };
+
+			default_platforms_distance = 1.1f;
+			
+		} else if (this.totalPlatformsSpawned < 75) {
+			options = new List<(string, float)>()
+            {
+                ("static_safe", 0.1f),
+				("moving", 0.3f),
+				("platform_with_enemy2", 0.2f),
+				("platform_with_enemy3", 0.2f),
+				("platform_dangerous3", 0.1f),
+				("platform_dangerous3", 0.1f),
+            };
+
+			default_platforms_distance = 1.2f;
+			
+		} else if (this.totalPlatformsSpawned < 100) {
+			options = new List<(string, float)>()
+            {
+                ("static_safe", 0.2f),
+				("moving", 0.4f),
+				("platform_dangerous2", 0.2f),
+                ("platform_with_enemy3", 0.2f),
+            };
+
+			default_platforms_distance = 1.1f;
+			
+		} else
+if (this.totalPlatformsSpawned < 200) {
+			options = new List<(string, float)>()
+            {
+                ("static_safe", 0.1f),
+                ("moving", 0.3f),
+                ("platform_with_enemy1", 0.1f),  // always left
+                ("platform_with_enemy2", 0.1f),  // always right
+                ("platform_with_enemy3", 0.1f),  // random position
+                ("platform_dangerous1", 0.1f),   // random position
+                ("platform_dangerous2", 0.1f),  // random position
+                ("platform_dangerous3", 0.1f),  // this one is deadly
+            };
+
+			default_platforms_distance = Random.Range(1.1f, 1.3f);
+        } else {
+
+            options = new List<(string, float)>()
+            {
+                ("moving", 0.1f),
+                ("platform_with_enemy1", 0.2f),  // always left
+                ("platform_with_enemy2", 0.2f),  // always right
+                ("platform_with_enemy3", 0.2f),  // random position
+                ("platform_dangerous1", 0.1f),   // random position
+                ("platform_dangerous2", 0.1f),  // random position
+                ("platform_dangerous3", 0.1f),  // this one is deadly
+            };
+
+			default_platforms_distance += 0.01f;
+        }
 
         string platform_type = GetWeightedRandom(options);
 
@@ -138,7 +272,7 @@ public class PlatformSpawner : MonoBehaviour
         if (platform_type == "moving")
         {
             x = (left.x + right.x) / 2.0f;
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = movingPlatformPrefab;
@@ -173,7 +307,7 @@ public class PlatformSpawner : MonoBehaviour
                 playerTransform.position = pos;
             }
 
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
 
             GameObject prefab = staticPlatformPrefab;
@@ -187,7 +321,7 @@ public class PlatformSpawner : MonoBehaviour
             x = left.x + platformHalfWidth;
             previous_static_platform = 1;
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatformWithEnemy1;
@@ -198,10 +332,17 @@ public class PlatformSpawner : MonoBehaviour
         }
         else if (platform_type == "platform_with_enemy2")
         {
-            x = left.x + platformHalfWidth;
-            previous_static_platform = 1;
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatformWithEnemy2;
@@ -212,10 +353,17 @@ public class PlatformSpawner : MonoBehaviour
         }
         else if (platform_type == "platform_with_enemy3")
         {
-            x = left.x + platformHalfWidth;
-            previous_static_platform = 1;
+            if (previous_static_platform == 1)
+            {
+                x = right.x - platformHalfWidth;
+                previous_static_platform = 2;
+            } else
+            {
+                x = left.x + platformHalfWidth;
+                previous_static_platform = 1;
+            }
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatformWithEnemy3;
@@ -236,7 +384,7 @@ public class PlatformSpawner : MonoBehaviour
                 previous_static_platform = 1;
             }
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatform_dangerous1;
@@ -257,7 +405,7 @@ public class PlatformSpawner : MonoBehaviour
                 previous_static_platform = 1;
             }
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatform_dangerous2;
@@ -278,7 +426,7 @@ public class PlatformSpawner : MonoBehaviour
                 previous_static_platform = 1;
             }
             
-            float y = nextSpawnY + 1.0f + Random.Range(0.0f, 0.3f);
+            float y = nextSpawnY + default_platforms_distance + Random.Range(0.0f, 0.3f);
             Vector3 spawnPos = new Vector3(x, y, platformZ);
             
             GameObject prefab = staticPlatform_dangerous3;

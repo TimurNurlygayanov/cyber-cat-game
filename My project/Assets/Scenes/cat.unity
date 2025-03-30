@@ -311,7 +311,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 332690552}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 110}
+  m_LocalPosition: {x: 0, y: 1.71, z: 110}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f259737d86742240bb7ca746e63cf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseSpeed: 0.2
+  riseSpeed: 0.05
   targetTag: Cat
 --- !u!212 &436235185
 SpriteRenderer:
@@ -1358,12 +1358,13 @@ MonoBehaviour:
   staticPlatformPrefab: {fileID: 3792877567911851252, guid: 207ddde4ac041594192a1626e8d1b1e6, type: 3}
   movingPlatformPrefab: {fileID: 3792877567911851252, guid: 0213b7668b1f2154287799e39cc4117c, type: 3}
   staticPlatformWithEnemy1: {fileID: 3792877567911851252, guid: 8db7d118c3ce3485f82aa5ea49cc3a1a, type: 3}
-  staticPlatformWithEnemy2: {fileID: 3792877567911851252, guid: 8db7d118c3ce3485f82aa5ea49cc3a1a, type: 3}
-  staticPlatformWithEnemy3: {fileID: 3792877567911851252, guid: 8db7d118c3ce3485f82aa5ea49cc3a1a, type: 3}
+  staticPlatformWithEnemy2: {fileID: 3792877567911851252, guid: 99747f99418fb4db6bfe4216ade95341, type: 3}
+  staticPlatformWithEnemy3: {fileID: 3792877567911851252, guid: 3964027a0a12444e9b7878a10c63b588, type: 3}
   staticPlatform_dangerous1: {fileID: 3792877567911851252, guid: 3d0868c0e4c9c4094b0ab2b1e18c3b25, type: 3}
   staticPlatform_dangerous2: {fileID: 3792877567911851252, guid: e81e3c7d1352c45b9be292244d65656c, type: 3}
   staticPlatform_dangerous3: {fileID: 3792877567911851252, guid: 2e2457308c2e24efab0f20f2479f2210, type: 3}
   playerTransform: {fileID: 1797950381}
+  totalPlatformsSpawned: 0
   minY: 0.7
   maxY: 0.9
   generationBuffer: 5
