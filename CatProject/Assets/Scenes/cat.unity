@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainAudioSource: {fileID: 283910129}
+  effectAudioSource: {fileID: 0}
   backgroundMusic: {fileID: 8300000, guid: 7ef437ee2d0ba9544893e56534e8a4a8, type: 3}
   periodicSound: {fileID: 8300000, guid: 17dd03c525e4d3049876bc89864145ca, type: 3}
   interval: 60
@@ -748,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f259737d86742240bb7ca746e63cf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseSpeed: 1
+  riseSpeed: 0.2
   targetTag: Cat
 --- !u!212 &436235185
 SpriteRenderer:
@@ -1405,12 +1406,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 720, y: 1280}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1425,7 +1426,7 @@ Canvas:
   m_GameObject: {fileID: 1591289585}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
